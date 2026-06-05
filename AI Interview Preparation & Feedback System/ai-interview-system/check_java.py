@@ -1,0 +1,20 @@
+import ast, re
+src = open('app.py', encoding='utf-8').read()
+ast.parse(src)
+print('app.py syntax: OK')
+java_count = src.count("'Java'")
+print('Java questions:', java_count)
+print('email route:', '/api/history/email/' in src)
+print('userEmail in feedback:', 'userEmail' in src)
+ids = re.findall(r'"id":\s*(\d+),', src)
+print('Total questions:', len(ids), '| Max ID:', max(int(i) for i in ids))
+
+# Check app.js
+js = open('frontend/app.js', encoding='utf-8').read()
+print('\napp.js checks:')
+print('storageKey function:', 'storageKey' in js)
+print('saveHistory function:', 'saveHistory' in js)
+print('loadHistory function:', 'loadHistory' in js)
+print('Java icon (coffee):', 'Java' in js)
+print('userEmail sent:', 'userEmail' in js)
+print('viewHistoryResult:', 'viewHistoryResult' in js)
